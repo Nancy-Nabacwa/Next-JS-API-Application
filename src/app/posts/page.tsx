@@ -1,15 +1,11 @@
 "use client"
 import usePosts from '@/app/hooks/usePosts';
-import PostCard from '../postsCardProps';
-
+import PostCard from '../components/postsCard';
 
 
 const Posts = () => {
     const { posts, loading, error} = usePosts();
 
-
-    
-    
     if (loading) {
         return (
             <div className="flex items-center justify-center w-full h-screen p-5">

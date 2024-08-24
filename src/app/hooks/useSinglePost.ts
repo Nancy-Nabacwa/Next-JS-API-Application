@@ -6,7 +6,7 @@ export interface Reactions {
   likes: number;
   dislikes: number;
 }
-export interface PostData {
+export interface SinglePostData {
   id: number;
   title: string;
   body: string;
@@ -16,7 +16,7 @@ export interface PostData {
 }
 
 const useSinglePost = (postId: number) => {
-  const [post, setPost] = useState<PostData | null>(null);
+  const [post, setPost] = useState<SinglePostData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

@@ -1,61 +1,3 @@
-// "use client"
-// import { ChangeEvent, useState} from "react";
-// import { useRouter } from "next/navigation";
-// import { userLogin } from "@/app/utils/userLogin";
-// const Login = () =>{
-//     const [username, setUserName] = useState("");
-//     const [password , setPassword] = useState("");
-//     const [loading,setLoading] = useState(false);
-//     const [error,setError]=useState('');
-//     const[response, setResponse] = useState('');
-//     const router = useRouter();
-
-
-//     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-//         event.preventDefault();
-//         setLoading(true);
-//         try {
-//             const response = await userLogin({ username, password });
-//             setResponse(response.message ?? 'Successful login');
-//             router.push('/components/posts');
-//         } catch (error) {
-//             setLoading(false);
-//             const message = (error as Error).message;
-//             setError(message);
-//         }
-//     };
-
-
-//     return(
-//         <form className="w-2/5 border p-10" onSubmit={handleLogin}>
-//             <h2>LOGIN</h2>
-//             <input 
-//             placeholder="Enter username" 
-//             type="text" 
-//             required 
-//             className="border w-full px-4 py-6 border-gray-500 rounded-xl mt-4"
-//             onChange = {(event:ChangeEvent<HTMLInputElement>) =>setUserName(event.target.value)}
-            
-//             />
-//             <br/>
-//             <input 
-//             placeholder="Enter password" 
-//             type="password" 
-//             required 
-//             className="border w-full px-4 py-6 border-gray-500 rounded-xl my-4"
-//             onChange = {(event:ChangeEvent<HTMLInputElement>) =>setPassword(event.target.value)}
-//             />
-//             <br/>
-//             <button className="rounded-xl bg-green-500 text-white cursor-pointer px-6 py-4">
-//               {loading? 'Loading please wait....':'Submit'}
-//             </button>
-//             {response && <p className="text-green-500 text-sm">{response}</p>}
-//             {error && <p className="text-red-500 text-sm">{error}</p>}
-
-//         </form>
-//     )
-// }
-// export default Login;
 
 
 
@@ -136,4 +78,3 @@ const Login = () => {
 }
 
 export default Login;
-
