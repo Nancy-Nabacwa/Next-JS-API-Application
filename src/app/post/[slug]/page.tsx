@@ -6,14 +6,7 @@ import PostCard from '@/app/components/postCard';
 const Post = () => {
     const { slug } = useParams();
     const postId = parseInt(slug as string);
-    // if (isNaN(postId)) {
-    //     return (
-    //         <div className="flex items-center justify-center w-full h-screen p-5">
-    //             <p className="text-red-500">Invalid Post ID</p>
-    //         </div>
-    //     );
-    // }
-
+   
     const { post, loading, error } = useSinglePost(postId);
 
     if (loading) {
