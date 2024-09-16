@@ -1,9 +1,9 @@
 const url = '/api/login'
 export const userLogin = async({
-    username,
+    email,
     password,
 }:{
-    username:string;
+    email:string;
     password:string;
 })=>{
     try{
@@ -12,7 +12,7 @@ export const userLogin = async({
             headers:{
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({username,password}),
+            body:JSON.stringify({email,password}),
         });
         return response.json();
         
