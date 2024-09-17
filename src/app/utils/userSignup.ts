@@ -1,33 +1,30 @@
-const signupUrl = '/api/signup';
+export const userSignup = async (userData: { firstname: string; lastname: string; email: string; password: string; role: string }) => {
+    try {
+        const baseUrl = process.env.BASE_URL || 'http://localhost:8000'; // Use environment variable or fallback to localhost
+        const response = await fetch(`${baseUrl}/api/signup/`, { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                first_name: userData.firstname, // Ensure field names match backend expectations
+                last_name: userData.lastname,
+                email: userData.email,
+                password: userData.password,
+                role: userData.role,  // Make sure this field is included and valid
+            }),
+        });
 
-export const userSignup = async ({
-  firstname,
-  lastname,
-  email,
-  password,
-}: {
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-}) => {
-  try {
-    const response = await fetch(signupUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ firstname, lastname, email, password }),
-    });
+        if (!response.ok) {
+            const text = await response.text();
+            console.error('Full response from server:', text);
+            throw new Error(`Failed to create account: ${response.status} ${response.statusText}`);
+        }
 
-    // Check if response is not OK
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to create user');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error during signup:', error);
+        throw new Error((error as Error).message || 'Something went wrong');
     }
-
-    return response.json();
-  } catch (error) {
-    return { error: (error as Error).message };
-  }
 };

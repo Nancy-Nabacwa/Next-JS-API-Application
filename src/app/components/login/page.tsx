@@ -30,9 +30,9 @@ const Login = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="flex w-full max-w-4xl h-full bg-white shadow-lg overflow-hidden">
+            <div className="flex w-full max-w-4xl h-[97vh]">
                 {/* Left side image */}
-                <div className="hidden md:flex md:w-1/2 bg-cover bg-center" style={{ backgroundImage: "url('/ladyjustice.jpeg')" }}>
+                <div className="hidden md:flex md:w-1/2 bg-cover bg-center" style={{ backgroundImage: "url('/judge.avif')" }}>
                 </div>
                 {/* Right side form */}
                 <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
@@ -60,19 +60,21 @@ const Login = () => {
                                 onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
                             />
                         </div>
-                        <button
-                            type="submit"
-                            className={`w-full bg-green-700 text-white font-medium py-2 rounded shadow hover:bg-green-800 focus:outline-none text-xs ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            disabled={loading}
-                        >
-                            {loading ? 'Signing in...' : 'Sign In'}
-                        </button>
+                        <div className="flex justify-center"> {/* Center the button */}
+                            <button
+                                type="submit"
+                                className={`w-1/2  bg-[#083317] text-white font-medium py-2 rounded shadow hover:bg-green-800 focus:outline-none text-xs ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                disabled={loading}
+                            >
+                                {loading ? 'Signing in...' : 'Sign In'}
+                            </button>
+                        </div>
                         {response && <p className="mt-2 text-green-500 text-center text-xs">{response}</p>}
                         {error && <p className="mt-2 text-red-500 text-center text-xs">{error}</p>}
                     </form>
-                    <div className="text-center mt-3">
-                        <p className="text-xs">or</p>
-                        <button className="w-full flex justify-center items-center bg-white border border-gray-300 text-gray-700 font-medium py-2 rounded shadow hover:bg-gray-100 focus:outline-none text-xs mt-2">
+                    <div className="text-center mt-40">
+                        <p className="text-xs mb-2">or</p>
+                        <button className="w-full flex justify-center items-center text-xs mb-3">
                             <img src="/google-icon.png" alt="Google Icon" className="w-5 h-5 mr-2" />
                             Sign In with Google
                         </button>

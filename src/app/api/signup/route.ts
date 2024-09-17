@@ -32,45 +32,45 @@
 // }
 
 
-// pages/api/signup.js
+// src/app/api/signup/route.ts
 
-export async function POST(request:Request) {
+export async function POST(request: Request) {
     const baseUrl = process.env.BASE_URL;
-    const { firstname, lastname, email, password } = await request.json();
-  
-    // Check if all required fields are present
-    if (!firstname || !lastname || !email || !password) {
-      return new Response(JSON.stringify({ error: 'All fields are required.' }), {
-        status: 400,
-      });
-    }
-  
-    try {
-      const response = await fetch(`${baseUrl}/api/signup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ firstname, lastname, email, password }),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        return new Response(JSON.stringify({ error: errorData.detail || 'Failed to create user' }), {
-          status: response.status,
+    const { username, password } = await request.json();
+
+    if (!username || !password) {
+        return new Response('Credentials missing', {
+            status: 400,
         });
-      }
-  
-      const result = await response.json();
-  
-      return new Response(JSON.stringify(result), {
-        status: 201,
-        statusText: 'User created successfully',
-      });
-    }catch(error){
-                return new Response((error as Error).message,{
-                    status:500
-                })
-            }
-  }
-  
+    }
+
+    try {
+        const response = await fetch(`${baseUrl}/api/signup/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (!response.ok) {
+            // If the response is not okay, log the text response and return it
+            const errorText = await response.text();
+            return new Response(errorText, {
+                status: response.status,
+                statusText: response.statusText,
+            });
+        }
+
+        const result = await response.json();
+        return new Response(JSON.stringify(result), {
+            status: 201,
+            statusText: "Signup successful"
+        });
+    } catch (error) {
+        console.error('Error during signup:', error); // Log error for debugging
+        return new Response((error as Error).message, {
+            status: 500
+        });
+    }
+}
